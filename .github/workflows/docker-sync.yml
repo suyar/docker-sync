@@ -27,11 +27,11 @@ jobs:
         with:
           src: docker.io/nginx:stable
           dst: |
-            ${{ secrets.ALI_DOCKER_REPO }}/suyar/nginx:stable
+            ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/nginx:stable
 
       - name: Sync NGINX Latest
         uses: docker/build-push-action@v2
         with:
           src: docker.io/nginx:latest
           dst: |
-            ${{ secrets.ALI_DOCKER_REPO }}/suyar/nginx:latest
+            ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/nginx:latest
