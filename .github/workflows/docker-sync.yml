@@ -15,23 +15,91 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Login to Ali
+      - name: login to aliyuncs
         uses: docker/login-action@v1
         with:
           registry: ${{ secrets.ALI_DOCKER_REPO }}
           username: ${{ secrets.ALI_DOCKER_USER }}
           password: ${{ secrets.ALI_DOCKER_PASS }}
 
-      - name: Sync NGINX Stable
+      - name: sync nginx:latest
+        uses: akhilerm/tag-push-action@v2.0.0
+        with:
+          src: docker.io/nginx:latest
+          dst: |
+            ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/nginx:latest
+
+      - name: sync nginx:stable
         uses: akhilerm/tag-push-action@v2.0.0
         with:
           src: docker.io/nginx:stable
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/nginx:stable
 
-      - name: Sync NGINX Latest
-        uses: docker/build-push-action@v2
+  sync_mysql:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: login to aliyuncs
+        uses: docker/login-action@v1
         with:
-          src: docker.io/nginx:latest
+          registry: ${{ secrets.ALI_DOCKER_REPO }}
+          username: ${{ secrets.ALI_DOCKER_USER }}
+          password: ${{ secrets.ALI_DOCKER_PASS }}
+
+      - name: sync mysql:latest
+        uses: akhilerm/tag-push-action@v2.0.0
+        with:
+          src: docker.io/mysql:latest
           dst: |
-            ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/nginx:latest
+            ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/mysql:latest
+
+      - name: sync mysql:8
+        uses: akhilerm/tag-push-action@v2.0.0
+        with:
+          src: docker.io/mysql:8
+          dst: |
+            ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/mysql:8
+            ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/mysql:8.0
+
+      - name: sync mysql:5
+        uses: akhilerm/tag-push-action@v2.0.0
+        with:
+          src: docker.io/mysql:5.7
+          dst: |
+            ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/mysql:5
+            ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/mysql:5.7
+
+  sync_redis:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: login to aliyuncs
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ secrets.ALI_DOCKER_REPO }}
+          username: ${{ secrets.ALI_DOCKER_USER }}
+          password: ${{ secrets.ALI_DOCKER_PASS }}
+
+      - name: sync redis:latest
+        uses: akhilerm/tag-push-action@v2.0.0
+        with:
+          src: docker.io/redis:latest
+          dst: |
+            ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/redis:latest
+
+      - name: sync redis:5
+        uses: akhilerm/tag-push-action@v2.0.0
+        with:
+          src: docker.io/redis:5
+          dst: |
+            ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/redis:5
+
+      - name: sync redis:6
+        uses: akhilerm/tag-push-action@v2.0.0
+        with:
+          src: docker.io/redis:6
+          dst: |
+            ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/redis:6
