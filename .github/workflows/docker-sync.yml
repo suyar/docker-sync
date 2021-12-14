@@ -61,6 +61,12 @@ jobs:
           src: docker.io/mysql:8
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/mysql:8
+
+      - name: sync mysql:8.0
+        uses: akhilerm/tag-push-action@v2.0.0
+        with:
+          src: docker.io/mysql:8.0
+          dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/mysql:8.0
 
       - name: sync mysql:5
