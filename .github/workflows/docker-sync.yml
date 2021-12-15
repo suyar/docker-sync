@@ -25,14 +25,14 @@ jobs:
       - name: sync nginx:latest
         uses: akhilerm/tag-push-action@v2.0.0
         with:
-          src: docker.io/nginx:latest
+          src: docker.io/library/nginx:latest
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/nginx:latest
 
       - name: sync nginx:stable
         uses: akhilerm/tag-push-action@v2.0.0
         with:
-          src: docker.io/nginx:stable
+          src: docker.io/library/nginx:stable
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/nginx:stable
 
@@ -51,28 +51,28 @@ jobs:
       - name: sync mysql:latest
         uses: akhilerm/tag-push-action@v2.0.0
         with:
-          src: docker.io/mysql:latest
+          src: docker.io/library/mysql:latest
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/mysql:latest
 
       - name: sync mysql:8
         uses: akhilerm/tag-push-action@v2.0.0
         with:
-          src: docker.io/mysql:8
+          src: docker.io/library/mysql:8
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/mysql:8
 
       - name: sync mysql:8.0
         uses: akhilerm/tag-push-action@v2.0.0
         with:
-          src: docker.io/mysql:8.0
+          src: docker.io/library/mysql:8.0
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/mysql:8.0
 
       - name: sync mysql:5
         uses: akhilerm/tag-push-action@v2.0.0
         with:
-          src: docker.io/mysql:5.7
+          src: docker.io/library/mysql:5.7
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/mysql:5
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/mysql:5.7
@@ -92,21 +92,21 @@ jobs:
       - name: sync redis:latest
         uses: akhilerm/tag-push-action@v2.0.0
         with:
-          src: docker.io/redis:latest
+          src: docker.io/library/redis:latest
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/redis:latest
 
       - name: sync redis:5
         uses: akhilerm/tag-push-action@v2.0.0
         with:
-          src: docker.io/redis:5
+          src: docker.io/library/redis:5
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/redis:5
 
       - name: sync redis:6
         uses: akhilerm/tag-push-action@v2.0.0
         with:
-          src: docker.io/redis:6
+          src: docker.io/library/redis:6
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/redis:6
 
@@ -125,97 +125,97 @@ jobs:
       - name: sync php:8.1-cli
         uses: akhilerm/tag-push-action@v2.0.0
         with:
-          src: docker.io/php:8.1-cli
+          src: docker.io/library/php:8.1-cli
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/php:8.1-cli
 
       - name: sync php:8.1-fpm
         uses: akhilerm/tag-push-action@v2.0.0
         with:
-          src: docker.io/php:8.1-fpm
+          src: docker.io/library/php:8.1-fpm
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/php:8.1-fpm
 
       - name: sync php:8.0-cli
         uses: akhilerm/tag-push-action@v2.0.0
         with:
-          src: docker.io/php:8.0-cli
+          src: docker.io/library/php:8.0-cli
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/php:8.0-cli
 
       - name: sync php:8.0-fpm
         uses: akhilerm/tag-push-action@v2.0.0
         with:
-          src: docker.io/php:8.0-fpm
+          src: docker.io/library/php:8.0-fpm
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/php:8.0-fpm
 
       - name: sync php:7.4-cli
         uses: akhilerm/tag-push-action@v2.0.0
         with:
-          src: docker.io/php:7.4-cli
+          src: docker.io/library/php:7.4-cli
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/php:7.4-cli
 
       - name: sync php:7.4-fpm
         uses: akhilerm/tag-push-action@v2.0.0
         with:
-          src: docker.io/php:7.4-fpm
+          src: docker.io/library/php:7.4-fpm
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/php:7.4-fpm
 
       - name: sync php:7.3-cli
         uses: akhilerm/tag-push-action@v2.0.0
         with:
-          src: docker.io/php:7.3-cli
+          src: docker.io/library/php:7.3-cli
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/php:7.3-cli
 
       - name: sync php:7.3-fpm
         uses: akhilerm/tag-push-action@v2.0.0
         with:
-          src: docker.io/php:7.3-fpm
+          src: docker.io/library/php:7.3-fpm
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/php:7.3-fpm
 
       - name: sync php:7.2-cli
         uses: akhilerm/tag-push-action@v2.0.0
         with:
-          src: docker.io/php:7.2-cli
+          src: docker.io/library/php:7.2-cli
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/php:7.2-cli
 
       - name: sync php:7.2-fpm
         uses: akhilerm/tag-push-action@v2.0.0
         with:
-          src: docker.io/php:7.2-fpm
+          src: docker.io/library/php:7.2-fpm
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/php:7.2-fpm
 
       - name: sync php:7.1-cli
         uses: akhilerm/tag-push-action@v2.0.0
         with:
-          src: docker.io/php:7.1-cli
+          src: docker.io/library/php:7.1-cli
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/php:7.1-cli
 
       - name: sync php:7.1-fpm
         uses: akhilerm/tag-push-action@v2.0.0
         with:
-          src: docker.io/php:7.1-fpm
+          src: docker.io/library/php:7.1-fpm
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/php:7.1-fpm
 
       - name: sync php:7.0-cli
         uses: akhilerm/tag-push-action@v2.0.0
         with:
-          src: docker.io/php:7.0-cli
+          src: docker.io/library/php:7.0-cli
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/php:7.0-cli
 
       - name: sync php:7.0-fpm
         uses: akhilerm/tag-push-action@v2.0.0
         with:
-          src: docker.io/php:7.0-fpm
+          src: docker.io/library/php:7.0-fpm
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/php:7.0-fpm
