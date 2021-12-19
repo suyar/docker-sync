@@ -49,6 +49,10 @@
     - `7.1-cli-alpine`
     - `7.1-fpm`
     - `7.1-fpm-alpine`
+    - `7.0-cli`
+    - `7.0-cli-alpine`
+    - `7.0-fpm`
+    - `7.0-fpm-alpine`
 
 ### suyar 仓库同步
 
@@ -77,3 +81,7 @@
   - `7.1-cli-alpine`
   - `7.1-fpm`
   - `7.1-fpm-alpine`
+  - `7.0-cli`
+  - `7.0-cli-alpine`
+  - `7.0-fpm`
+  - `7.0-fpm-alpine`
