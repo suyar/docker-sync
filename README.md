@@ -56,6 +56,9 @@
     - `7.0-fpm`
     - `7.0-fpm-alpine`
 
+- vaultwarden/server
+  - `latest`
+
 ### suyar 仓库同步
 
 - suyar/php
