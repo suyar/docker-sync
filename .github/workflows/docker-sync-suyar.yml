@@ -61,7 +61,7 @@ jobs:
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:${{ matrix.version }}-fpm-alpine
 
-  sync_suyar_auxiliary:
+  sync_suyar_php_auxiliary:
 
     runs-on: ubuntu-latest
 
