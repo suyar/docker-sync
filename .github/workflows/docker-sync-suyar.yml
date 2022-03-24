@@ -88,3 +88,17 @@ jobs:
           src: docker.io/suyar/php:${{ matrix.version }}-cli-alpine-cron
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:${{ matrix.version }}-cli-alpine-cron
+
+      - name: sync php:${{ matrix.version }}-integration
+        uses: akhilerm/tag-push-action@v2.0.0
+        with:
+          src: docker.io/suyar/php:${{ matrix.version }}-integration
+          dst: |
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:${{ matrix.version }}-integration
+
+      - name: sync php:${{ matrix.version }}-alpine-integration
+        uses: akhilerm/tag-push-action@v2.0.0
+        with:
+          src: docker.io/suyar/php:${{ matrix.version }}-alpine-integration
+          dst: |
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:${{ matrix.version }}-alpine-integration
