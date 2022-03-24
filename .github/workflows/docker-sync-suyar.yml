@@ -61,23 +61,6 @@ jobs:
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:${{ matrix.version }}-fpm-alpine
 
-  sync_suyar_php_auxiliary:
-
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        version:
-          - "8.0"
-
-    steps:
-      - name: login to aliyuncs
-        uses: docker/login-action@v1
-        with:
-          registry: ${{ secrets.ALI_DOCKER_REPO }}
-          username: ${{ secrets.ALI_DOCKER_USER }}
-          password: ${{ secrets.ALI_DOCKER_PASS }}
-
       - name: sync php:${{ matrix.version }}-cli-supervisor
         uses: akhilerm/tag-push-action@v2.0.0
         with:
@@ -91,3 +74,17 @@ jobs:
           src: docker.io/suyar/php:${{ matrix.version }}-cli-alpine-supervisor
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:${{ matrix.version }}-cli-alpine-supervisor
+
+      - name: sync php:${{ matrix.version }}-cli-cron
+        uses: akhilerm/tag-push-action@v2.0.0
+        with:
+          src: docker.io/suyar/php:${{ matrix.version }}-cli-cron
+          dst: |
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:${{ matrix.version }}-cli-cron
+
+      - name: sync php:${{ matrix.version }}-cli-alpine-cron
+        uses: akhilerm/tag-push-action@v2.0.0
+        with:
+          src: docker.io/suyar/php:${{ matrix.version }}-cli-alpine-cron
+          dst: |
+            ${{ secrets.ALI_DOCKER_REPO }}/suyar/php:${{ matrix.version }}-cli-alpine-cron
