@@ -21,6 +21,10 @@ jobs:
           - "stable"
           - "alpine"
           - "stable-alpine"
+          - "1.25"
+          - "1.25-alpine"
+          - "1.24"
+          - "1.24-alpine"
 
     steps:
       - name: login to aliyuncs
@@ -47,8 +51,10 @@ jobs:
           - "latest"
           - "8"
           - "8.0"
+          - "8.0.33"
           - "5"
           - "5.7"
+          - "5.7.42"
 
     steps:
       - name: login to aliyuncs
@@ -74,7 +80,12 @@ jobs:
         version:
           - "latest"
           - "5"
+          - "5.0"
           - "6"
+          - "6.0"
+          - "6.2"
+          - "7"
+          - "7.0"
 
     steps:
       - name: login to aliyuncs
@@ -98,13 +109,13 @@ jobs:
     strategy:
       matrix:
         version:
-          - "7.0"
           - "7.1"
           - "7.2"
           - "7.3"
           - "7.4"
           - "8.0"
           - "8.1"
+          - "8.2"
 
     steps:
       - name: login to aliyuncs
@@ -150,6 +161,7 @@ jobs:
       matrix:
         version:
           - "latest"
+          - "1.29.0"
 
     steps:
       - name: login to aliyuncs
