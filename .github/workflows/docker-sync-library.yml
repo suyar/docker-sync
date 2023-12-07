@@ -50,19 +50,22 @@ jobs:
         version:
           - "latest"
           - "8"
+          - "8.2"
+          - "8.2.0"
+          - "8.2-oracle"
+          - "8.2.0-oracle"
           - "8.0"
-          - "8.0.33"
-          - "8.0.34"
-          - "8-debian"
+          - "8.0.35"
+          - "8.0-oracle"
+          - "8.0.35-oracle"
           - "8.0-debian"
-          - "8.0.33-debian"
-          - "8.0.34-debian"
+          - "8.0.35-debian"
           - "5"
           - "5.7"
-          - "5.7.42"
-          - "5-debian"
-          - "5.7-debian"
-          - "5.7.42-debian"
+          - "5.7.44"
+          - "5-oracle"
+          - "5.7-oracle"
+          - "5.7.44-oracle"
 
     steps:
       - name: login to aliyuncs
@@ -87,15 +90,23 @@ jobs:
       matrix:
         version:
           - "latest"
+          - "alpine"
           - "5"
+          - "5-alpine"
           - "5.0"
+          - "5.0-alpine"
           - "6"
+          - "6-alpine"
           - "6.0"
+          - "6.0-alpine"
           - "6.2"
-          - "6.2.13"
+          - "6.2-alpine"
           - "7"
+          - "7-alpine"
           - "7.0"
-          - "7.0.12"
+          - "7.0-alpine"
+          - "7.2"
+          - "7.2-alpine"
 
     steps:
       - name: login to aliyuncs
@@ -126,6 +137,7 @@ jobs:
           - "8.0"
           - "8.1"
           - "8.2"
+          - "8.3"
 
     steps:
       - name: login to aliyuncs
@@ -171,7 +183,17 @@ jobs:
       matrix:
         version:
           - "latest"
+          - "alpine"
           - "1.29.0"
+          - "1.29.0-alpine"
+          - "1.29.1"
+          - "1.29.2-alpine"
+          - "1.29.2"
+          - "1.29.2-alpine"
+          - "1.30.0"
+          - "1.30.0-alpine"
+          - "1.30.1"
+          - "1.30.1-alpine"
 
     steps:
       - name: login to aliyuncs
