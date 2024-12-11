@@ -21,10 +21,10 @@ jobs:
           - "stable"
           - "alpine"
           - "stable-alpine"
-          - "1.25"
-          - "1.25-alpine"
-          - "1.24"
-          - "1.24-alpine"
+          - "1.27"
+          - "1.27-alpine"
+          - "1.26"
+          - "1.26-alpine"
 
     steps:
       - name: login to aliyuncs
@@ -49,23 +49,18 @@ jobs:
       matrix:
         version:
           - "latest"
+          - "lts"
           - "8"
-          - "8.2"
-          - "8.2.0"
-          - "8.2-oracle"
-          - "8.2.0-oracle"
+          - "8.4"
+          - "8.4.3"
+          - "8.4-oracle"
+          - "8.4.3-oracle"
           - "8.0"
-          - "8.0.35"
+          - "8.0.40"
           - "8.0-oracle"
-          - "8.0.35-oracle"
+          - "8.0.40-oracle"
           - "8.0-debian"
-          - "8.0.35-debian"
-          - "5"
-          - "5.7"
-          - "5.7.44"
-          - "5-oracle"
-          - "5.7-oracle"
-          - "5.7.44-oracle"
+          - "8.0.40-debian"
 
     steps:
       - name: login to aliyuncs
@@ -91,22 +86,16 @@ jobs:
         version:
           - "latest"
           - "alpine"
-          - "5"
-          - "5-alpine"
-          - "5.0"
-          - "5.0-alpine"
           - "6"
           - "6-alpine"
-          - "6.0"
-          - "6.0-alpine"
           - "6.2"
           - "6.2-alpine"
           - "7"
           - "7-alpine"
-          - "7.0"
-          - "7.0-alpine"
           - "7.2"
           - "7.2-alpine"
+          - "7.4"
+          - "7.4-alpine"
 
     steps:
       - name: login to aliyuncs
@@ -138,6 +127,7 @@ jobs:
           - "8.1"
           - "8.2"
           - "8.3"
+          - "8.4"
 
     steps:
       - name: login to aliyuncs
@@ -184,16 +174,10 @@ jobs:
         version:
           - "latest"
           - "alpine"
-          - "1.29.0"
-          - "1.29.0-alpine"
-          - "1.29.1"
-          - "1.29.2-alpine"
-          - "1.29.2"
-          - "1.29.2-alpine"
-          - "1.30.0"
-          - "1.30.0-alpine"
-          - "1.30.1"
-          - "1.30.1-alpine"
+          - "1.32.5"
+          - "1.32.5-alpine"
+          - "1.32.6"
+          - "1.32.6-alpine"
 
     steps:
       - name: login to aliyuncs
