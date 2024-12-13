@@ -14,6 +14,7 @@
 - php
 - vaultwarden/server
 
-### suyar 仓库同步
+### 其他仓库同步
 
 - suyar/php
+- bitnami/kafka
