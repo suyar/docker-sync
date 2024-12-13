@@ -1,4 +1,4 @@
-name: Docker Sync Suyar
+name: Docker Sync Other
 
 on:
 #  push:
