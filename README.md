@@ -18,3 +18,4 @@
 
 - suyar/php
 - bitnami/kafka
+- bitnami/clickhouse

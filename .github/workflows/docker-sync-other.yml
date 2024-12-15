@@ -140,3 +140,31 @@ jobs:
           src: docker.io/bitnami/kafka:${{ matrix.version }}
           dst: |
             ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/kafka:${{ matrix.version }}
+
+  sync_bitnami_clickhouse:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        version:
+          - "latest"
+          - "24.3"
+          - "24.3-debian-12"
+          - "24.8"
+          - "24.8-debian-12"
+
+    steps:
+      - name: login to aliyuncs
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ secrets.ALI_DOCKER_REPO }}
+          username: ${{ secrets.ALI_DOCKER_USER }}
+          password: ${{ secrets.ALI_DOCKER_PASS }}
+
+      - name: sync clickhouse:${{ matrix.version }}
+        uses: akhilerm/tag-push-action@v2.1.0
+        with:
+          src: docker.io/bitnami/clickhouse:${{ matrix.version }}
+          dst: |
+            ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/clickhouse:${{ matrix.version }}
