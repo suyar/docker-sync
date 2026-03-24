@@ -36,7 +36,7 @@ jobs:
 
       - name: Copy vaultwarden/server:${{ matrix.version }} (buildx imagetools)
         env:
-          SRC: docker.1ms.run/vaultwarden/server:${{ matrix.version }}
+          SRC: ${{ secrets.DOCKERHUB_MIRROR }}/vaultwarden/server:${{ matrix.version }}
           DST: ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/vaultwarden_server:${{ matrix.version }}
         run: |
           SRC_DIGEST="$(docker buildx imagetools inspect "$SRC" | awk '/^Digest:/ {print $2; exit}')"

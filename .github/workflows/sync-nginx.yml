@@ -36,7 +36,7 @@ jobs:
 
       - name: Copy nginx:${{ matrix.version }} (buildx imagetools)
         env:
-          SRC: docker.1ms.run/library/nginx:${{ matrix.version }}
+          SRC: ${{ secrets.DOCKERHUB_MIRROR }}/library/nginx:${{ matrix.version }}
           DST: ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/nginx:${{ matrix.version }}
         run: |
           SRC_DIGEST="$(docker buildx imagetools inspect "$SRC" | awk '/^Digest:/ {print $2; exit}')"
