@@ -37,7 +37,7 @@ jobs:
 
       - name: Copy ttionya/vaultwarden-backup:${{ matrix.version }} (buildx imagetools)
         env:
-          SRC: docker.1ms.run/ttionya/vaultwarden-backup:${{ matrix.version }}
+          SRC: ${{ secrets.DOCKERHUB_MIRROR }}/ttionya/vaultwarden-backup:${{ matrix.version }}
           DST: ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/vaultwarden_backup:${{ matrix.version }}
         run: |
           SRC_DIGEST="$(docker buildx imagetools inspect "$SRC" | awk '/^Digest:/ {print $2; exit}')"
