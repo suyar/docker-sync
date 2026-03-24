@@ -7,6 +7,10 @@ on:
     paths:
       - '.github/workflows/sync-vaultwarden-server.yml'
 
+concurrency:
+  group: sync-vaultwarden-server-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   sync:
 

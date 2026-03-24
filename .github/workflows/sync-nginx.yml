@@ -7,6 +7,10 @@ on:
     paths:
       - '.github/workflows/sync-nginx.yml'
 
+concurrency:
+  group: sync-nginx-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   sync:
 

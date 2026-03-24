@@ -7,6 +7,10 @@ on:
     paths:
       - '.github/workflows/sync-mysql.yml'
 
+concurrency:
+  group: sync-mysql-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   sync:
 
