@@ -1,0 +1,41 @@
+name: Docker Sync Library
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/sync-nginx.yml'
+
+jobs:
+  sync:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        version:
+          - "stable"
+          - "stable-alpine"
+          - "1.28"
+          - "1.28.2"
+          - "1.28-alpine"
+          - "1.28.2-alpine"
+
+    steps:
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4.0.0
+
+      - name: Login to Aliyun
+        uses: docker/login-action@v4.0.0
+        with:
+          registry: ${{ secrets.ALI_DOCKER_REPO }}
+          username: ${{ secrets.ALI_DOCKER_USER }}
+          password: ${{ secrets.ALI_DOCKER_PASS }}
+
+      - name: Copy nginx:${{ matrix.version }} (buildx imagetools)
+        env:
+          SRC: docker.io/library/nginx:${{ matrix.version }}
+          DST: ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/nginx:${{ matrix.version }}
+        run: |
+          docker buildx imagetools create --tag "$DST" "$SRC"
