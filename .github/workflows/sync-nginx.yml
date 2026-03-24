@@ -15,12 +15,8 @@ jobs:
     strategy:
       matrix:
         version:
-          - "stable"
-          - "stable-alpine"
           - "1.28"
           - "1.28.2"
-          - "1.28-alpine"
-          - "1.28.2-alpine"
 
     steps:
       - name: Set up Docker Buildx
