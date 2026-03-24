@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      max-parallel: 2
       matrix:
         version:
           - "6"
@@ -52,7 +53,17 @@ jobs:
 
       - name: Copy redis:${{ matrix.version }} (buildx imagetools)
         env:
-          SRC: docker.io/library/redis:${{ matrix.version }}
+          SRC: docker.1ms.run/library/redis:${{ matrix.version }}
           DST: ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/redis:${{ matrix.version }}
         run: |
+          SRC_DIGEST="$(docker buildx imagetools inspect "$SRC" | awk '/^Digest:/ {print $2; exit}')"
+          DST_DIGEST="$(docker buildx imagetools inspect "$DST" 2>/dev/null | awk '/^Digest:/ {print $2; exit}' || true)"
+          if [ -z "$SRC_DIGEST" ]; then
+            echo "Failed to resolve source digest: $SRC"
+            exit 1
+          fi
+          if [ -n "$DST_DIGEST" ] && [ "$SRC_DIGEST" = "$DST_DIGEST" ]; then
+            echo "Digest unchanged ($SRC_DIGEST), skip sync."
+            exit 0
+          fi
           docker buildx imagetools create --tag "$DST" "$SRC"
