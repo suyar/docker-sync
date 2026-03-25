@@ -27,19 +27,19 @@ services:
 
   # sync-redis.yml
   sync_redis_6_2:
-    image: redis:6.2.1
+    image: redis:8.6.2
   sync_redis_7_2:
-    image: redis:7.2.13
+    image: redis:8.6.2
   sync_redis_7_4:
-    image: redis:7.4.8
+    image: redis:8.6.2
   sync_redis_8_0:
-    image: redis:8.0.6
+    image: redis:8.6.2
   sync_redis_8_2:
-    image: redis:8.2.5
+    image: redis:8.6.2
   sync_redis_8_4:
-    image: redis:8.4.2
+    image: redis:8.6.2
   sync_redis_8_6:
-    image: redis:8.6.1
+    image: redis:8.6.2
 
   # sync-vaultwarden-backup.yml
   sync_vaultwarden_backup:
