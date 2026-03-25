@@ -1,6 +1,7 @@
 version: 2
 updates:
-  - package-ecosystem: docker
+  # docker-compose.yml 必须用 docker-compose；docker 生态只认 Dockerfile / Kubernetes YAML
+  - package-ecosystem: docker-compose
     directory: /dependabot
     schedule:
       interval: daily
@@ -9,7 +10,8 @@ updates:
       - dependencies
       - docker
     commit-message:
-      prefix: "feat:"
+      # 勿加尾部冒号，否则会变成 feat:: bump …
+      prefix: "feat"
 
   - package-ecosystem: github-actions
     directory: /
@@ -20,4 +22,4 @@ updates:
       - dependencies
       - github-actions
     commit-message:
-      prefix: "chore:"
+      prefix: "chore"
