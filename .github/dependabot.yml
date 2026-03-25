@@ -1,6 +1,5 @@
 version: 2
 updates:
-  # docker-compose.yml 必须用 docker-compose；docker 生态只认 Dockerfile / Kubernetes YAML
   - package-ecosystem: docker-compose
     directory: /dependabot
     schedule:
@@ -10,8 +9,20 @@ updates:
       - dependencies
       - docker
     commit-message:
-      # 勿加尾部冒号，否则会变成 feat:: bump …
       prefix: "feat"
+    ignore:
+      - dependency-name: "mysql"
+        update-types:
+          - "version-update:semver-minor"
+          - "version-update:semver-major"
+      - dependency-name: "nginx"
+        update-types:
+          - "version-update:semver-minor"
+          - "version-update:semver-major"
+      - dependency-name: "redis"
+        update-types:
+          - "version-update:semver-minor"
+          - "version-update:semver-major"
 
   - package-ecosystem: github-actions
     directory: /

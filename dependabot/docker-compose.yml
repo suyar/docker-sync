@@ -20,6 +20,8 @@ services:
     image: mysql:8.0.45
   sync_mysql_8_4:
     image: mysql:8.4.8
+  sync_mysql_9_6:
+    image: mysql:9.6.0
 
   # sync-nginx.yml
   sync_nginx:

@@ -24,6 +24,8 @@ jobs:
           - "8.0.45"
           - "8.4"
           - "8.4.8"
+          - "9.6"
+          - "9.6.0"
 
     steps:
       - name: Set up Docker Buildx
