@@ -23,7 +23,7 @@ services:
 
   # sync-nginx.yml
   sync_nginx:
-    image: nginx:1.28.2
+    image: nginx:1.29.7
 
   # sync-redis.yml
   sync_redis_6_2:
