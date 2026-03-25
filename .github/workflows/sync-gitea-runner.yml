@@ -20,8 +20,6 @@ jobs:
       max-parallel: 2
       matrix:
         version:
-          - "0.2.12"
-          - "0.2.13"
           - "0.3.0"
 
     steps:

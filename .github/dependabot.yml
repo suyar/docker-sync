@@ -1,0 +1,23 @@
+version: 2
+updates:
+  - package-ecosystem: docker
+    directory: /dependabot
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 15
+    labels:
+      - dependencies
+      - docker
+    commit-message:
+      prefix: "feat:"
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
+    labels:
+      - dependencies
+      - github-actions
+    commit-message:
+      prefix: "chore:"

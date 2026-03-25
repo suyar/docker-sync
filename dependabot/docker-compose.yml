@@ -1,0 +1,58 @@
+services:
+  # sync-drone-runner.yml
+  sync_drone_runner:
+    image: drone/drone-runner-docker:1.8.5
+
+  # sync-drone-server.yml
+  sync_drone_server:
+    image: drone/drone:2.27.2
+
+  # sync-gitea-gitea.yml
+  sync_gitea_gitea:
+    image: gitea/gitea:1.25.5
+
+  # sync-gitea-runner.yml
+  sync_gitea_runner:
+    image: gitea/act_runner:0.3.0
+
+  # sync-mysql.yml
+  sync_mysql_8_0:
+    image: mysql:8.0.45
+  sync_mysql_8_4:
+    image: mysql:8.4.8
+
+  # sync-nginx.yml
+  sync_nginx:
+    image: nginx:1.28.2
+
+  # sync-redis.yml
+  sync_redis_6_2:
+    image: redis:6.2.1
+  sync_redis_7_2:
+    image: redis:7.2.13
+  sync_redis_7_4:
+    image: redis:7.4.8
+  sync_redis_8_0:
+    image: redis:8.0.6
+  sync_redis_8_2:
+    image: redis:8.2.5
+  sync_redis_8_4:
+    image: redis:8.4.2
+  sync_redis_8_6:
+    image: redis:8.6.1
+
+  # sync-vaultwarden-backup.yml
+  sync_vaultwarden_backup:
+    image: ttionya/vaultwarden-backup:1.26.4
+
+  # sync-vaultwarden-server.yml
+  sync_vaultwarden_server:
+    image: vaultwarden/server:1.35.4
+
+  # sync-woodpecker-agent.yml
+  sync_woodpecker_agent:
+    image: woodpeckerci/woodpecker-agent:v3.13.0
+
+  # sync-woodpecker-server.yml
+  sync_woodpecker_server:
+    image: woodpeckerci/woodpecker-server:v3.13.0
