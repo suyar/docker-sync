@@ -13,7 +13,7 @@ services:
 
   # sync-gitea-runner.yml
   sync_gitea_runner:
-    image: gitea/act_runner:0.3.0
+    image: gitea/act_runner:0.3.1
 
   # sync-mysql.yml
   sync_mysql_8_0:
