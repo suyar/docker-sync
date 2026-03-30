@@ -5,7 +5,7 @@ services:
 
   # sync-drone-server.yml
   sync_drone_server:
-    image: drone/drone:2.27.2
+    image: drone/drone:2.28.0
 
   # sync-gitea-gitea.yml
   sync_gitea_gitea:
