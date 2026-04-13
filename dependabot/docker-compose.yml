@@ -45,7 +45,7 @@ services:
 
   # sync-vaultwarden-backup.yml
   sync_vaultwarden_backup:
-    image: ttionya/vaultwarden-backup:1.26.5
+    image: ttionya/vaultwarden-backup:1.26.6
 
   # sync-vaultwarden-server.yml
   sync_vaultwarden_server:
