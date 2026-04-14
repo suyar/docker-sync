@@ -49,7 +49,7 @@ services:
 
   # sync-vaultwarden-server.yml
   sync_vaultwarden_server:
-    image: vaultwarden/server:1.35.4
+    image: vaultwarden/server:1.35.7
 
   # sync-woodpecker-agent.yml
   sync_woodpecker_agent:
