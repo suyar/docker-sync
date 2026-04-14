@@ -20,7 +20,7 @@ jobs:
       max-parallel: 2
       matrix:
         version:
-          - "1.35.4"
+          - "1.35.7"
 
     steps:
       - name: Set up Docker Buildx
