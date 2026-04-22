@@ -1,10 +1,63 @@
 version: 2
+
+# 说明：
+# - 每个镜像线使用独立的 /dependabot/<name>/docker-compose.yml，
+#   避免同一个 dependency-name 在同一个文件中出现多行时 Dependabot 互相干扰。
+# - mysql / nginx / redis 仅接受 patch 更新（忽略 minor / major）。
+
 updates:
+  # ---------- drone ----------
   - package-ecosystem: docker-compose
-    directory: /dependabot
+    directory: /dependabot/drone-runner
     schedule:
       interval: daily
-    open-pull-requests-limit: 15
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - docker
+    commit-message:
+      prefix: "feat"
+
+  - package-ecosystem: docker-compose
+    directory: /dependabot/drone-server
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - docker
+    commit-message:
+      prefix: "feat"
+
+  # ---------- gitea ----------
+  - package-ecosystem: docker-compose
+    directory: /dependabot/gitea-gitea
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - docker
+    commit-message:
+      prefix: "feat"
+
+  - package-ecosystem: docker-compose
+    directory: /dependabot/gitea-runner
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - docker
+    commit-message:
+      prefix: "feat"
+
+  # ---------- mysql (patch only) ----------
+  - package-ecosystem: docker-compose
+    directory: /dependabot/mysql-8.0
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
     labels:
       - dependencies
       - docker
@@ -15,15 +68,216 @@ updates:
         update-types:
           - "version-update:semver-minor"
           - "version-update:semver-major"
+
+  - package-ecosystem: docker-compose
+    directory: /dependabot/mysql-8.4
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - docker
+    commit-message:
+      prefix: "feat"
+    ignore:
+      - dependency-name: "mysql"
+        update-types:
+          - "version-update:semver-minor"
+          - "version-update:semver-major"
+
+  - package-ecosystem: docker-compose
+    directory: /dependabot/mysql-9
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - docker
+    commit-message:
+      prefix: "feat"
+    ignore:
+      - dependency-name: "mysql"
+        update-types:
+          - "version-update:semver-minor"
+          - "version-update:semver-major"
+
+  # ---------- nginx (patch only) ----------
+  - package-ecosystem: docker-compose
+    directory: /dependabot/nginx-1.28
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - docker
+    commit-message:
+      prefix: "feat"
+    ignore:
       - dependency-name: "nginx"
         update-types:
           - "version-update:semver-minor"
           - "version-update:semver-major"
+
+  # ---------- redis (patch only) ----------
+  - package-ecosystem: docker-compose
+    directory: /dependabot/redis-6.2
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - docker
+    commit-message:
+      prefix: "feat"
+    ignore:
       - dependency-name: "redis"
         update-types:
           - "version-update:semver-minor"
           - "version-update:semver-major"
 
+  - package-ecosystem: docker-compose
+    directory: /dependabot/redis-7.2
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - docker
+    commit-message:
+      prefix: "feat"
+    ignore:
+      - dependency-name: "redis"
+        update-types:
+          - "version-update:semver-minor"
+          - "version-update:semver-major"
+
+  - package-ecosystem: docker-compose
+    directory: /dependabot/redis-7.4
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - docker
+    commit-message:
+      prefix: "feat"
+    ignore:
+      - dependency-name: "redis"
+        update-types:
+          - "version-update:semver-minor"
+          - "version-update:semver-major"
+
+  - package-ecosystem: docker-compose
+    directory: /dependabot/redis-8.0
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - docker
+    commit-message:
+      prefix: "feat"
+    ignore:
+      - dependency-name: "redis"
+        update-types:
+          - "version-update:semver-minor"
+          - "version-update:semver-major"
+
+  - package-ecosystem: docker-compose
+    directory: /dependabot/redis-8.2
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - docker
+    commit-message:
+      prefix: "feat"
+    ignore:
+      - dependency-name: "redis"
+        update-types:
+          - "version-update:semver-minor"
+          - "version-update:semver-major"
+
+  - package-ecosystem: docker-compose
+    directory: /dependabot/redis-8.4
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - docker
+    commit-message:
+      prefix: "feat"
+    ignore:
+      - dependency-name: "redis"
+        update-types:
+          - "version-update:semver-minor"
+          - "version-update:semver-major"
+
+  - package-ecosystem: docker-compose
+    directory: /dependabot/redis-8.6
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - docker
+    commit-message:
+      prefix: "feat"
+    ignore:
+      - dependency-name: "redis"
+        update-types:
+          - "version-update:semver-minor"
+          - "version-update:semver-major"
+
+  # ---------- vaultwarden ----------
+  - package-ecosystem: docker-compose
+    directory: /dependabot/vaultwarden-backup
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - docker
+    commit-message:
+      prefix: "feat"
+
+  - package-ecosystem: docker-compose
+    directory: /dependabot/vaultwarden-server
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - docker
+    commit-message:
+      prefix: "feat"
+
+  # ---------- woodpecker ----------
+  - package-ecosystem: docker-compose
+    directory: /dependabot/woodpecker-agent
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - docker
+    commit-message:
+      prefix: "feat"
+
+  - package-ecosystem: docker-compose
+    directory: /dependabot/woodpecker-server
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - docker
+    commit-message:
+      prefix: "feat"
+
+  # ---------- github actions ----------
   - package-ecosystem: github-actions
     directory: /
     schedule:
