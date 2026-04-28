@@ -1,14 +1,27 @@
 version: 2
 
+registries:
+  dockerhub:
+    type: docker-registry
+    # 将未带 registry 主机的镜像按 Hub 规则解析到该地址（replaces-base）
+    url: https://focker.ir
+    replaces-base: true
+    # 若镜像站需要认证，取消下面两行并到仓库 Secrets 中配置
+    # username: ${{ secrets.DOCKER_MIRROR_USER }}
+    # password: ${{ secrets.DOCKER_MIRROR_PASSWORD }}
+
 # 说明：
 # - 每个镜像线使用独立的 /dependabot/<name>/docker-compose.yml，
 #   避免同一个 dependency-name 在同一个文件中出现多行时 Dependabot 互相干扰。
 # - mysql / nginx / redis 仅接受 patch 更新（忽略 minor / major）。
+# - 每个 docker-compose 的 updates 已挂 registries: dockerhub，与 registries 段配合使用。
 
 updates:
   # ---------- drone ----------
   - package-ecosystem: docker-compose
     directory: /dependabot/drone-runner
+    registries:
+      - dockerhub
     schedule:
       interval: daily
     open-pull-requests-limit: 5
@@ -20,6 +33,8 @@ updates:
 
   - package-ecosystem: docker-compose
     directory: /dependabot/drone-server
+    registries:
+      - dockerhub
     schedule:
       interval: daily
     open-pull-requests-limit: 5
@@ -32,6 +47,8 @@ updates:
   # ---------- gitea ----------
   - package-ecosystem: docker-compose
     directory: /dependabot/gitea-gitea
+    registries:
+      - dockerhub
     schedule:
       interval: daily
     open-pull-requests-limit: 5
@@ -43,6 +60,8 @@ updates:
 
   - package-ecosystem: docker-compose
     directory: /dependabot/gitea-runner
+    registries:
+      - dockerhub
     schedule:
       interval: daily
     open-pull-requests-limit: 5
@@ -55,6 +74,8 @@ updates:
   # ---------- mysql (patch only) ----------
   - package-ecosystem: docker-compose
     directory: /dependabot/mysql-8.0
+    registries:
+      - dockerhub
     schedule:
       interval: daily
     open-pull-requests-limit: 5
@@ -71,6 +92,8 @@ updates:
 
   - package-ecosystem: docker-compose
     directory: /dependabot/mysql-8.4
+    registries:
+      - dockerhub
     schedule:
       interval: daily
     open-pull-requests-limit: 5
@@ -87,6 +110,8 @@ updates:
 
   - package-ecosystem: docker-compose
     directory: /dependabot/mysql-9
+    registries:
+      - dockerhub
     schedule:
       interval: daily
     open-pull-requests-limit: 5
@@ -104,6 +129,8 @@ updates:
   # ---------- nginx (patch only) ----------
   - package-ecosystem: docker-compose
     directory: /dependabot/nginx-1.28
+    registries:
+      - dockerhub
     schedule:
       interval: daily
     open-pull-requests-limit: 5
@@ -121,6 +148,8 @@ updates:
   # ---------- redis (patch only) ----------
   - package-ecosystem: docker-compose
     directory: /dependabot/redis-6.2
+    registries:
+      - dockerhub
     schedule:
       interval: daily
     open-pull-requests-limit: 5
@@ -137,6 +166,8 @@ updates:
 
   - package-ecosystem: docker-compose
     directory: /dependabot/redis-7.2
+    registries:
+      - dockerhub
     schedule:
       interval: daily
     open-pull-requests-limit: 5
@@ -153,6 +184,8 @@ updates:
 
   - package-ecosystem: docker-compose
     directory: /dependabot/redis-7.4
+    registries:
+      - dockerhub
     schedule:
       interval: daily
     open-pull-requests-limit: 5
@@ -169,6 +202,8 @@ updates:
 
   - package-ecosystem: docker-compose
     directory: /dependabot/redis-8.0
+    registries:
+      - dockerhub
     schedule:
       interval: daily
     open-pull-requests-limit: 5
@@ -185,6 +220,8 @@ updates:
 
   - package-ecosystem: docker-compose
     directory: /dependabot/redis-8.2
+    registries:
+      - dockerhub
     schedule:
       interval: daily
     open-pull-requests-limit: 5
@@ -201,6 +238,8 @@ updates:
 
   - package-ecosystem: docker-compose
     directory: /dependabot/redis-8.4
+    registries:
+      - dockerhub
     schedule:
       interval: daily
     open-pull-requests-limit: 5
@@ -217,6 +256,8 @@ updates:
 
   - package-ecosystem: docker-compose
     directory: /dependabot/redis-8.6
+    registries:
+      - dockerhub
     schedule:
       interval: daily
     open-pull-requests-limit: 5
@@ -234,6 +275,8 @@ updates:
   # ---------- vaultwarden ----------
   - package-ecosystem: docker-compose
     directory: /dependabot/vaultwarden-backup
+    registries:
+      - dockerhub
     schedule:
       interval: daily
     open-pull-requests-limit: 5
@@ -245,6 +288,8 @@ updates:
 
   - package-ecosystem: docker-compose
     directory: /dependabot/vaultwarden-server
+    registries:
+      - dockerhub
     schedule:
       interval: daily
     open-pull-requests-limit: 5
@@ -257,6 +302,8 @@ updates:
   # ---------- woodpecker ----------
   - package-ecosystem: docker-compose
     directory: /dependabot/woodpecker-agent
+    registries:
+      - dockerhub
     schedule:
       interval: daily
     open-pull-requests-limit: 5
@@ -268,6 +315,8 @@ updates:
 
   - package-ecosystem: docker-compose
     directory: /dependabot/woodpecker-server
+    registries:
+      - dockerhub
     schedule:
       interval: daily
     open-pull-requests-limit: 5
