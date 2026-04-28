@@ -30,14 +30,14 @@ jobs:
       - name: Login to Aliyun
         uses: docker/login-action@v4.1.0
         with:
-          registry: ${{ secrets.ALI_DOCKER_REPO }}
-          username: ${{ secrets.ALI_DOCKER_USER }}
-          password: ${{ secrets.ALI_DOCKER_PASS }}
+          registry: ${{ secrets.HW_DOCKER_REPO }}
+          username: ${{ secrets.HW_DOCKER_USER }}
+          password: ${{ secrets.HW_DOCKER_PASS }}
 
       - name: Copy ttionya/vaultwarden-backup:${{ matrix.version }} (buildx imagetools)
         env:
           SRC: ${{ secrets.DOCKERHUB_MIRROR }}/ttionya/vaultwarden-backup:${{ matrix.version }}
-          DST: ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/vaultwarden_backup:${{ matrix.version }}
+          DST: ${{ secrets.HW_DOCKER_REPO }}/mirrors_hub/vaultwarden_backup:${{ matrix.version }}
         run: |
           SRC_DIGEST="$(docker buildx imagetools inspect "$SRC" | awk '/^Digest:/ {print $2; exit}')"
           DST_DIGEST="$(docker buildx imagetools inspect "$DST" 2>/dev/null | awk '/^Digest:/ {print $2; exit}' || true)"
