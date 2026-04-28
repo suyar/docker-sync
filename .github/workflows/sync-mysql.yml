@@ -29,29 +29,44 @@ jobs:
           - "9.6.0"
 
     steps:
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4.0.0
+      - name: Install skopeo
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y skopeo
 
       - name: Login to Cloud
-        uses: docker/login-action@v4.1.0
-        with:
-          registry: ${{ secrets.TC_DOCKER_REPO }}
-          username: ${{ secrets.TC_DOCKER_USER }}
-          password: ${{ secrets.TC_DOCKER_PASS }}
+        env:
+          REGISTRY: ${{ secrets.TC_DOCKER_REPO }}
+          USERNAME: ${{ secrets.TC_DOCKER_USER }}
+          PASSWORD: ${{ secrets.TC_DOCKER_PASS }}
+        run: |
+          echo "$PASSWORD" | skopeo login --username "$USERNAME" --password-stdin "$REGISTRY"
 
-      - name: Copy mysql:${{ matrix.version }} (buildx imagetools)
+      - name: Copy mysql:${{ matrix.version }} (skopeo)
         env:
           SRC: ${{ secrets.DOCKERHUB_MIRROR }}/library/mysql:${{ matrix.version }}
           DST: ${{ secrets.TC_DOCKER_REPO }}/mirrors_hub/mysql:${{ matrix.version }}
         run: |
-          SRC_DIGEST="$(docker buildx imagetools inspect "$SRC" | awk '/^Digest:/ {print $2; exit}')"
-          DST_DIGEST="$(docker buildx imagetools inspect "$DST" 2>/dev/null | awk '/^Digest:/ {print $2; exit}' || true)"
-          if [ -z "$SRC_DIGEST" ]; then
+          set -o pipefail
+
+          SRC_RAW="$(mktemp)"
+          DST_RAW="$(mktemp)"
+          trap 'rm -f "$SRC_RAW" "$DST_RAW"' EXIT
+
+          if ! skopeo inspect --raw "docker://$SRC" > "$SRC_RAW" 2>/dev/null || [ ! -s "$SRC_RAW" ]; then
             echo "Failed to resolve source digest: $SRC"
             exit 1
           fi
+          SRC_DIGEST="sha256:$(sha256sum "$SRC_RAW" | awk '{print $1}')"
+
+          DST_DIGEST=""
+          if skopeo inspect --raw "docker://$DST" > "$DST_RAW" 2>/dev/null && [ -s "$DST_RAW" ]; then
+            DST_DIGEST="sha256:$(sha256sum "$DST_RAW" | awk '{print $1}')"
+          fi
+
           if [ -n "$DST_DIGEST" ] && [ "$SRC_DIGEST" = "$DST_DIGEST" ]; then
             echo "Digest unchanged ($SRC_DIGEST), skip sync."
             exit 0
           fi
-          docker buildx imagetools create --tag "$DST" "$SRC"
+
+          skopeo copy --multi-arch all --retry-times 3 "docker://$SRC" "docker://$DST"
