@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - '.github/workflows/sync-mysql.yml'
+  workflow_dispatch:
 
 concurrency:
   group: sync-mysql-${{ github.ref }}

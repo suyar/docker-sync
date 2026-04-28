@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - '.github/workflows/sync-vaultwarden-backup.yml'
+  workflow_dispatch:
 
 concurrency:
   group: sync-vaultwarden-backup-${{ github.ref }}

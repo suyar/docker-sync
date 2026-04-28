@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - '.github/workflows/sync-woodpecker-server.yml'
+  workflow_dispatch:
 
 concurrency:
   group: sync-woodpecker-server-${{ github.ref }}

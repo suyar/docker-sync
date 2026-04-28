@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - '.github/workflows/sync-nginx.yml'
+  workflow_dispatch:
 
 concurrency:
   group: sync-nginx-${{ github.ref }}

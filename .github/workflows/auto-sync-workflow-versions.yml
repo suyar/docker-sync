@@ -1,0 +1,74 @@
+name: Auto Sync Workflow Versions
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'dependabot/**/docker-compose.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: auto-sync-workflow-versions-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.x'
+
+      - name: Sync versions from changed compose files
+        run: |
+          CHANGED_FILES="$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" -- 'dependabot/**/docker-compose.yml' || true)"
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "No changed dependabot compose files in this push."
+            exit 0
+          fi
+
+          python scripts/sync_workflow_versions.py $CHANGED_FILES
+
+      - name: Collect updated workflow files
+        id: collect
+        run: |
+          UPDATED="$(git diff --name-only -- '.github/workflows/sync-*.yml' | tr '\n' ' ')"
+          echo "updated=$UPDATED" >> "$GITHUB_OUTPUT"
+          if [ -z "$UPDATED" ]; then
+            echo "No workflow version changes."
+          else
+            echo "Updated workflows: $UPDATED"
+          fi
+
+      - name: Commit and push if changed
+        if: steps.collect.outputs.updated != ''
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add .github/workflows/sync-*.yml
+          git commit -m "chore: sync workflow matrix versions from dependabot compose"
+          git push
+
+      - name: Trigger updated sync workflows
+        if: steps.collect.outputs.updated != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          for f in ${{ steps.collect.outputs.updated }}; do
+            wf="$(basename "$f")"
+            echo "Triggering $wf on main"
+            gh workflow run "$wf" --ref main
+          done

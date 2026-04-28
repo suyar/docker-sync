@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - '.github/workflows/sync-woodpecker-agent.yml'
+  workflow_dispatch:
 
 concurrency:
   group: sync-woodpecker-agent-${{ github.ref }}

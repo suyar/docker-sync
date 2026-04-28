@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - '.github/workflows/sync-redis.yml'
+  workflow_dispatch:
 
 concurrency:
   group: sync-redis-${{ github.ref }}

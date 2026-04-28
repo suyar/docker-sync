@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - '.github/workflows/sync-drone-server.yml'
+  workflow_dispatch:
 
 concurrency:
   group: sync-drone-server-${{ github.ref }}
