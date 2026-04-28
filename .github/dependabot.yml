@@ -6,7 +6,7 @@ updates:
     directory: /dependabot/drone-runner
     schedule:
       interval: daily
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 3
     labels:
       - dependencies
       - docker
@@ -17,7 +17,7 @@ updates:
     directory: /dependabot/drone-server
     schedule:
       interval: daily
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 3
     labels:
       - dependencies
       - docker
@@ -29,7 +29,7 @@ updates:
     directory: /dependabot/gitea-gitea
     schedule:
       interval: daily
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 3
     labels:
       - dependencies
       - docker
@@ -40,7 +40,7 @@ updates:
     directory: /dependabot/gitea-runner
     schedule:
       interval: daily
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 3
     labels:
       - dependencies
       - docker
@@ -52,7 +52,7 @@ updates:
     directory: /dependabot/mysql-8.0
     schedule:
       interval: daily
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 3
     labels:
       - dependencies
       - docker
@@ -68,7 +68,7 @@ updates:
     directory: /dependabot/mysql-8.4
     schedule:
       interval: daily
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 3
     labels:
       - dependencies
       - docker
@@ -84,7 +84,7 @@ updates:
     directory: /dependabot/mysql-9
     schedule:
       interval: daily
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 3
     labels:
       - dependencies
       - docker
@@ -101,7 +101,7 @@ updates:
     directory: /dependabot/nginx-1.28
     schedule:
       interval: daily
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 3
     labels:
       - dependencies
       - docker
@@ -118,7 +118,7 @@ updates:
     directory: /dependabot/redis-6.2
     schedule:
       interval: daily
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 3
     labels:
       - dependencies
       - docker
@@ -134,7 +134,7 @@ updates:
     directory: /dependabot/redis-7.2
     schedule:
       interval: daily
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 3
     labels:
       - dependencies
       - docker
@@ -150,7 +150,7 @@ updates:
     directory: /dependabot/redis-7.4
     schedule:
       interval: daily
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 3
     labels:
       - dependencies
       - docker
@@ -166,7 +166,7 @@ updates:
     directory: /dependabot/redis-8.0
     schedule:
       interval: daily
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 3
     labels:
       - dependencies
       - docker
@@ -182,7 +182,7 @@ updates:
     directory: /dependabot/redis-8.2
     schedule:
       interval: daily
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 3
     labels:
       - dependencies
       - docker
@@ -198,7 +198,7 @@ updates:
     directory: /dependabot/redis-8.4
     schedule:
       interval: daily
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 3
     labels:
       - dependencies
       - docker
@@ -214,7 +214,7 @@ updates:
     directory: /dependabot/redis-8.6
     schedule:
       interval: daily
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 3
     labels:
       - dependencies
       - docker
@@ -231,7 +231,7 @@ updates:
     directory: /dependabot/vaultwarden-backup
     schedule:
       interval: daily
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 3
     labels:
       - dependencies
       - docker
@@ -242,7 +242,7 @@ updates:
     directory: /dependabot/vaultwarden-server
     schedule:
       interval: daily
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 3
     labels:
       - dependencies
       - docker
@@ -254,7 +254,7 @@ updates:
     directory: /dependabot/woodpecker-agent
     schedule:
       interval: daily
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 3
     labels:
       - dependencies
       - docker
@@ -265,7 +265,7 @@ updates:
     directory: /dependabot/woodpecker-server
     schedule:
       interval: daily
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 3
     labels:
       - dependencies
       - docker
@@ -277,7 +277,7 @@ updates:
     directory: /
     schedule:
       interval: weekly
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 3
     labels:
       - dependencies
       - github-actions
