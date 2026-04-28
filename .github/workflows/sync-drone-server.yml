@@ -45,24 +45,19 @@ jobs:
         run: |
           set -o pipefail
 
-          SRC_RAW="$(mktemp)"
-          DST_RAW="$(mktemp)"
-          trap 'rm -f "$SRC_RAW" "$DST_RAW"' EXIT
+          SKOPEO_PLATFORM=(--override-os linux --override-arch amd64)
 
-          if ! skopeo inspect --raw "docker://$SRC" > "$SRC_RAW" 2>/dev/null || [ ! -s "$SRC_RAW" ]; then
+          SRC_DIGEST="$(skopeo inspect "${SKOPEO_PLATFORM[@]}" --format '{{.Digest}}' "docker://$SRC" 2>/dev/null || true)"
+          if [ -z "$SRC_DIGEST" ]; then
             echo "Failed to resolve source digest: $SRC"
             exit 1
           fi
-          SRC_DIGEST="sha256:$(sha256sum "$SRC_RAW" | awk '{print $1}')"
 
-          DST_DIGEST=""
-          if skopeo inspect --raw "docker://$DST" > "$DST_RAW" 2>/dev/null && [ -s "$DST_RAW" ]; then
-            DST_DIGEST="sha256:$(sha256sum "$DST_RAW" | awk '{print $1}')"
-          fi
+          DST_DIGEST="$(skopeo inspect "${SKOPEO_PLATFORM[@]}" --format '{{.Digest}}' "docker://$DST" 2>/dev/null || true)"
 
           if [ -n "$DST_DIGEST" ] && [ "$SRC_DIGEST" = "$DST_DIGEST" ]; then
             echo "Digest unchanged ($SRC_DIGEST), skip sync."
             exit 0
           fi
 
-          skopeo copy --multi-arch all --retry-times 3 "docker://$SRC" "docker://$DST"
+          skopeo copy "${SKOPEO_PLATFORM[@]}" --retry-times 3 "docker://$SRC" "docker://$DST"
