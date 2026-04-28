@@ -102,7 +102,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
-      max-parallel: 2
+      max-parallel: 8
       matrix:
         version:
           - "1"
