@@ -32,16 +32,16 @@ jobs:
 
       - name: Login to cloud
         env:
-          REGISTRY: ${{ secrets.TC_DOCKER_REPO }}
-          USERNAME: ${{ secrets.TC_DOCKER_USER }}
-          PASSWORD: ${{ secrets.TC_DOCKER_PASS }}
+          REGISTRY: ${{ secrets.ALI_DOCKER_REPO }}
+          USERNAME: ${{ secrets.ALI_DOCKER_USER }}
+          PASSWORD: ${{ secrets.ALI_DOCKER_PASS }}
         run: |
           echo "$PASSWORD" | skopeo login --username "$USERNAME" --password-stdin "$REGISTRY"
 
       - name: Copy gitea/gitea:${{ matrix.version }} (skopeo)
         env:
           SRC: ${{ secrets.DOCKERHUB_MIRROR }}/gitea/gitea:${{ matrix.version }}
-          DST: ${{ secrets.TC_DOCKER_REPO }}/mirrors_hub/gitea:${{ matrix.version }}
+          DST: ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/gitea:${{ matrix.version }}
         run: |
           set -o pipefail
 
