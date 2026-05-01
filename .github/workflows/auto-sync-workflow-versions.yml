@@ -25,6 +25,9 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
+          # PAT with `workflow` scope so the later `git push` can update files
+          # under .github/workflows/ (default GITHUB_TOKEN cannot).
+          token: ${{ secrets.WORKFLOW_PAT }}
 
       - name: Set up Python
         uses: actions/setup-python@v6
