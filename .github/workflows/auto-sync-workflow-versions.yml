@@ -10,7 +10,6 @@ on:
 
 permissions:
   contents: write
-  actions: write
 
 concurrency:
   group: auto-sync-workflow-versions-${{ github.ref }}
@@ -64,14 +63,3 @@ jobs:
           git add .github/workflows/sync-*.yml
           git commit -m "chore: sync workflow matrix versions from dependabot compose"
           git push
-
-      - name: Trigger updated sync workflows
-        if: steps.collect.outputs.updated != ''
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          for f in ${{ steps.collect.outputs.updated }}; do
-            wf="$(basename "$f")"
-            echo "Triggering $wf on main"
-            gh workflow run "$wf" --ref main
-          done
