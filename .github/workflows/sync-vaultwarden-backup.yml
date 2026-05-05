@@ -21,7 +21,7 @@ jobs:
       max-parallel: 2
       matrix:
         version:
-          - "1.26.7"
+          - "1.26.8"
 
     steps:
       - name: Install skopeo
