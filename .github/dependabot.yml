@@ -113,6 +113,22 @@ updates:
           - "version-update:semver-minor"
           - "version-update:semver-major"
 
+  - package-ecosystem: docker-compose
+    directory: /dependabot/nginx-1.30
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - docker
+    commit-message:
+      prefix: "feat"
+    ignore:
+      - dependency-name: "*/nginx"
+        update-types:
+          - "version-update:semver-minor"
+          - "version-update:semver-major"
+
   # ---------- redis (patch only) ----------
   - package-ecosystem: docker-compose
     directory: /dependabot/redis-6.2
