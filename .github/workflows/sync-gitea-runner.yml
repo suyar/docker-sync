@@ -37,9 +37,9 @@ jobs:
         run: |
           echo "$PASSWORD" | skopeo login --username "$USERNAME" --password-stdin "$REGISTRY"
 
-      - name: Copy gitea/act_runner:${{ matrix.version }} (skopeo)
+      - name: Copy gitea/runner:${{ matrix.version }} (skopeo)
         env:
-          SRC: ${{ secrets.DOCKERHUB_MIRROR }}/gitea/act_runner:${{ matrix.version }}
+          SRC: ${{ secrets.DOCKERHUB_MIRROR }}/gitea/runner:${{ matrix.version }}
           DST: ${{ secrets.ALI_DOCKER_REPO }}/mirrors_hub/gitea_runner:${{ matrix.version }}
         run: |
           set -o pipefail
