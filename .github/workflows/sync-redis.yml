@@ -37,7 +37,7 @@ jobs:
           - "8.4"
           - "8.4.6"
           - "8.6"
-          - "8.6.5"
+          - "8.6.7"
 
     steps:
       - name: Install skopeo
