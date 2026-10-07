@@ -22,7 +22,7 @@ jobs:
       matrix:
         version:
           - "28"
-          - "28.0.0"
+          - "28.1.0"
 
     steps:
       - name: Install skopeo
